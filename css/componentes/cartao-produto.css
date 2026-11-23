@@ -63,16 +63,6 @@
     }
 }
 
-:root[data-tema="escuro"] .cartao-produto__foto img {
-    mix-blend-mode: normal;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:not([data-tema="claro"]) .cartao-produto__foto img {
-        mix-blend-mode: normal;
-    }
-}
-
 /* o cartão de tipo é um botão (troca a vista do catálogo) */
 button.cartao-produto {
     width: 100%;

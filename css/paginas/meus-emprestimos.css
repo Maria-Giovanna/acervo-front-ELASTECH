@@ -50,10 +50,6 @@
     }
 }
 
-:root[data-tema="escuro"] .emprestimo__foto img {
-    mix-blend-mode: normal;
-}
-
 .emprestimo__info {
     display: grid;
     justify-items: start;

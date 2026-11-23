@@ -31,7 +31,7 @@
     --fundo: light-dark(#F6F6F2, #121410);           /* fundo da página */
     --superficie: light-dark(#FFFFFF, #1C1F19);      /* cartões */
     --superficie-baixa: light-dark(#EEEEE8, #20241C); /* rodapé e áreas recuadas */
-    --fundo-foto: light-dark(#EDEDE7, #262A22);      /* atrás das fotos */
+    --fundo-foto: light-dark(#EDEDE7, #FFFFFF);      /* atrás das fotos */
     --linha: light-dark(#DFDFD7, #30352B);
     --texto: light-dark(#1C1E19, #ECEEE6);
     --texto-suave: light-dark(#5C6057, #A7AC9F);
