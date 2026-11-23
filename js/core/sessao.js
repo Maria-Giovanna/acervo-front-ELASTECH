@@ -79,6 +79,19 @@ function irParaEntrar(motivo) {
     location.href = `entrar.html?${parametros}`;
 }
 
+// depois de entrar ou criar a conta, volta pra página de onde a pessoa veio.
+// Só aceita páginas do próprio site (evita mandar a pessoa pra um endereço de fora)
+function destinoDepoisDoLogin() {
+    const voltar = lerParametro("voltar");
+    const ehPaginaDoSite = /^[a-z-]+\.html(\?[^#]*)?(#[a-z-]+)?$/.test(voltar ?? "");
+    const ehTelaDeAcesso = /^(entrar|criar-conta)\.html/.test(voltar ?? "");
+
+    if (ehPaginaDoSite && !ehTelaDeAcesso) {
+        return voltar;
+    }
+    return "index.html";
+}
+
 function exigirLogin() {
     if (!estaLogado()) {
         irParaEntrar("entrar");

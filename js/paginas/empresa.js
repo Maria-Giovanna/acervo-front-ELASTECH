@@ -131,33 +131,6 @@ async function cadastrarEquipamento(evento) {
 
 
 //MÉTODOS: CADASTRAR PESSOA
-function montarRegrasDaSenha() {
-    const itens = REGRAS_DA_SENHA.map((regra) => {
-        const item = document.createElement("li");
-        item.dataset.regra = regra.id;
-        item.dataset.ok = "false";
-        listaRegrasSenha.append(item);
-        return item;
-    });
-    atualizarRegrasDaSenha();
-    return itens;
-}
-
-// cada regra cumprida vira ✓ (ícone + texto, não só a cor)
-function atualizarRegrasDaSenha() {
-    const senha = campoSenhaPessoa.value;
-    for (const regra of REGRAS_DA_SENHA) {
-        const item = listaRegrasSenha.querySelector(`[data-regra="${regra.id}"]`);
-        const cumprida = regra.confere(senha);
-        item.dataset.ok = String(cumprida);
-        item.innerHTML = cumprida ? ICONES.check : ICONES.vazio;
-
-        const texto = document.createElement("span");
-        texto.textContent = cumprida ? `Tem ${regra.texto}` : `Precisa de ${regra.texto}`;
-        item.append(texto);
-    }
-}
-
 async function cadastrarPessoa(evento) {
     evento.preventDefault();
 
@@ -184,7 +157,7 @@ async function cadastrarPessoa(evento) {
         });
         mostrarAviso(`Cadastro de ${pessoa.nome} feito. Já dá pra entrar com esse e-mail e senha.`);
         formPessoa.reset();
-        atualizarRegrasDaSenha();
+        atualizarRegrasDaSenha(campoSenhaPessoa, listaRegrasSenha);
     } catch (erro) {
         // R3: e-mail repetido vem como 409 ("E-mail já cadastrado")
         mostrarErro(campoEmailPessoa, erro.message);
@@ -212,11 +185,10 @@ function iniciarEmpresa() {
 
     document.getElementById("area-admin").hidden = false;
     preencherTipos();
-    montarRegrasDaSenha();
+    ligarRegrasDaSenha(campoSenhaPessoa, listaRegrasSenha);
     ligarMostrarSenha(campoSenhaPessoa, document.getElementById("mostrar-senha-pessoa"));
 
     campoNomeEquipamento.addEventListener("change", completarTipoDoModelo);
-    campoSenhaPessoa.addEventListener("input", atualizarRegrasDaSenha);
     formEquipamento.addEventListener("submit", cadastrarEquipamento);
     formPessoa.addEventListener("submit", cadastrarPessoa);
 

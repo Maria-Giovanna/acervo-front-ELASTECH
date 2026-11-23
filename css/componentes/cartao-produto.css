@@ -52,13 +52,13 @@
         width: 80%;
         height: 80%;
         object-fit: contain;
-        mix-blend-mode: multiply;   /* foto de fundo branco se funde com o cinza */
+        mix-blend-mode: multiply;   /* o fundo branco da foto se funde com a caixa, nos dois temas */
         transition: scale 0.35s;
     }
 
     & > svg {
         width: 34%;
-        color: var(--texto-suave);
+        color: var(--icone-foto);
         opacity: 0.6;
     }
 }

@@ -38,14 +38,14 @@
         <div class="entrar__texto">
             <p class="selo-secao">Acesso</p>
             <h1 class="titulo-secao">Entre para reservar</h1>
-            <p>Use o e-mail e a senha que a empresa cadastrou para você. Ainda não tem acesso? Fale com a equipe de TI pelo ramal 2040.</p>
+            <p>Use o e-mail e a senha da sua conta. Primeira vez aqui? Crie sua conta em menos de um minuto.</p>
         </div>
 
         <form class="cartao formulario" id="form-entrar" novalidate>
             <p class="alerta alerta--info" id="alerta-motivo" hidden></p>
 
             <div class="campo">
-                <label for="email">E-mail da empresa</label>
+                <label for="email">E-mail</label>
                 <input class="campo__entrada" id="email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="email-erro">
                 <p class="campo__erro" id="email-erro" hidden></p>
             </div>
@@ -62,6 +62,8 @@
             <p class="alerta alerta--erro" id="alerta-erro" role="alert" hidden></p>
 
             <button class="botao botao--primario botao--largo" id="botao-entrar-form" type="submit">Entrar</button>
+
+            <p class="formulario__troca">Ainda não tem conta? <a id="link-criar-conta" href="criar-conta.html">Criar conta</a></p>
         </form>
     </section>
 </main>

@@ -391,7 +391,7 @@
 
     & > svg {
         width: 50%;
-        color: var(--texto-suave);
+        color: var(--icone-foto);
     }
 }
 

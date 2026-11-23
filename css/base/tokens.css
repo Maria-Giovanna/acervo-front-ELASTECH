@@ -31,7 +31,8 @@
     --fundo: light-dark(#F6F6F2, #121410);           /* fundo da página */
     --superficie: light-dark(#FFFFFF, #1C1F19);      /* cartões */
     --superficie-baixa: light-dark(#EEEEE8, #20241C); /* rodapé e áreas recuadas */
-    --fundo-foto: light-dark(#EDEDE7, #FFFFFF);      /* atrás das fotos */
+    --fundo-foto: light-dark(#EDEDE7, #FFFFFF);      /* atrás das fotos: no escuro fica branco, como uma vitrine */
+    --icone-foto: #8A8D80;                           /* ícone reserva na caixa da foto (o fundo é claro nos dois temas) */
     --linha: light-dark(#DFDFD7, #30352B);
     --texto: light-dark(#1C1E19, #ECEEE6);
     --texto-suave: light-dark(#5C6057, #A7AC9F);
@@ -84,7 +85,7 @@
     --fundo: light-dark(#F2F2F2, #121212);
     --superficie: light-dark(#FFFFFF, #1C1C1C);
     --superficie-baixa: light-dark(#EBEBEB, #222222);
-    --fundo-foto: light-dark(#EDEDED, #262626);
+    --fundo-foto: light-dark(#EDEDED, #FFFFFF);
     --linha: light-dark(#D9D9D9, #333333);
     --texto: light-dark(#141414, #F0F0F0);
     --texto-suave: light-dark(#4A4A4A, #B0B0B0);

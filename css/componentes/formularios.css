@@ -1,12 +1,25 @@
 /* =========================================================
    ACERVO – formulários
    Campo, rótulo, erro embaixo do campo certo (ícone + texto),
-   botão de mostrar senha, regras da senha forte e opções em pílula.
+   botão de mostrar senha, regras da senha forte, opções em pílula
+   e a linha de trocar entre "Entrar" e "Criar conta".
    ========================================================= */
 
 .formulario {
     display: grid;
     gap: var(--e3);
+}
+
+/* "Ainda não tem conta? Criar conta" embaixo do botão */
+.formulario__troca {
+    color: var(--texto-suave);
+    text-align: center;
+
+    & a {
+        color: var(--principal);
+        font-weight: 600;
+        text-underline-offset: 0.2em;
+    }
 }
 
 .campo {
@@ -21,6 +34,7 @@
     & .campo__dica {
         color: var(--texto-suave);
         font-size: 0.9375rem;
+        font-weight: 400;
     }
 }
 

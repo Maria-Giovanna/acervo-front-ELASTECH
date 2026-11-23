@@ -34,6 +34,22 @@ function conferirCampo(entrada, validar) {
     return true;
 }
 
+// o erro aparece quando a pessoa sai do campo, e some assim que ela corrige
+function ligarValidacaoAoVivo(campo, validar) {
+    campo.addEventListener("blur", () => {
+        if (campo.value !== "") {
+            conferirCampo(campo, validar);
+        }
+    });
+
+    campo.addEventListener("input", () => {
+        const estaComErro = campo.getAttribute("aria-invalid") === "true";
+        if (estaComErro) {
+            conferirCampo(campo, validar);
+        }
+    });
+}
+
 function ligarMostrarSenha(entrada, botao) {
     botao.addEventListener("click", () => {
         const estaEscondida = entrada.type === "password";

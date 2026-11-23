@@ -46,7 +46,7 @@
 
     & > svg {
         width: 55%;
-        color: var(--texto-suave);
+        color: var(--icone-foto);
     }
 }
 
