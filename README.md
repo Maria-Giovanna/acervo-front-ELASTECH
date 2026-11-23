@@ -8,7 +8,7 @@ O site é a parte visual do **Projeto 2 do bootcamp #ElasTech** (PagBank). Todos
 
 | | Link |
 |---|---|
-| **Site** (Netlify) | COLE_AQUI_O_LINK_DO_NETLIFY |
+| **Site** (Netlify) | (https://acervo-front-elastech.netlify.app/index.html) |
 | **API** (Render) | https://emprestimos-api-magi.onrender.com |
 
 > A API está no plano gratuito do Render e "dorme" depois de 15 minutos sem uso. Se o site demorar na primeira vez, ele avisa: "Acordando o servidor". A primeira resposta pode levar até 1 minuto.
