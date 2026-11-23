@@ -1,0 +1,82 @@
+/* =========================================================
+   ACERVO – tipografia
+   Uma escala só para o site inteiro:
+   título de abertura > título de seção > título de cartão > texto > texto pequeno.
+   ========================================================= */
+
+body {
+    font-family: var(--fonte);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--texto);
+    background: var(--fundo);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* títulos: Archivo, pesada e com as letras próximas */
+h1,
+h2,
+h3,
+.titulo-abertura,
+.titulo-secao,
+.titulo-cartao {
+    font-family: var(--fonte-titulo);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+}
+
+.titulo-abertura {
+    font-size: clamp(2.75rem, 1.6rem + 4.6vw, 5.25rem);
+    line-height: 1;
+}
+
+.titulo-secao,
+h1 {
+    font-size: clamp(2.25rem, 1.6rem + 2.2vw, 3.25rem);
+    line-height: 1.05;
+}
+
+.titulo-cartao,
+h3 {
+    font-size: 1.1875rem;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+}
+
+h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+.texto-suave {
+    color: var(--texto-suave);
+}
+
+.texto-pequeno {
+    font-size: 0.875rem;
+}
+
+a {
+    color: var(--principal);
+    text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+    outline: 3px solid var(--principal);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+}
+
+.so-leitor {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}

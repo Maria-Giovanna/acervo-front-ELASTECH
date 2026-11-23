@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Área da empresa – Acervo</title>
+    <meta name="description" content="Cadastro de equipamentos e pessoas.">
+
+    <!-- aplica tema, tamanho do texto e cores ANTES de desenhar a página -->
+    <script src="js/core/preferencias.js"></script>
+
+    <!-- fontes: Archivo (títulos) e Atkinson Hyperlegible Next (texto, feita para baixa visão) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS: sistema (base) → peças (componentes) → página -->
+    <link rel="stylesheet" href="css/base/tokens.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <link rel="stylesheet" href="css/base/tipografia.css">
+    <link rel="stylesheet" href="css/base/layout.css">
+    <link rel="stylesheet" href="css/componentes/botoes.css">
+    <link rel="stylesheet" href="css/componentes/cartao.css">
+    <link rel="stylesheet" href="css/componentes/formularios.css">
+    <link rel="stylesheet" href="css/componentes/selos.css">
+    <link rel="stylesheet" href="css/componentes/estados.css">
+    <link rel="stylesheet" href="css/componentes/avisos.css">
+    <link rel="stylesheet" href="css/componentes/cabecalho.css">
+    <link rel="stylesheet" href="css/componentes/rodape.css">
+    <link rel="stylesheet" href="css/paginas/empresa.css">
+</head>
+<body data-pagina="empresa">
+
+<header id="cabecalho"></header>
+
+<main id="conteudo" class="pagina">
+    <div class="topo-pagina">
+        <p class="selo-secao">Administração</p>
+        <h1 class="titulo-secao">Área da empresa</h1>
+        <p>Cadastre equipamentos e pessoas. Só o perfil de administração vê esta página.</p>
+    </div>
+
+    <!-- quem não é ADMIN vê só isto -->
+    <section class="estado" id="estado-sem-permissao" hidden>
+        <span class="estado__icone" id="sem-permissao-icone"></span>
+        <h2>Esta área é só da administração</h2>
+        <p>O seu perfil pode ver o catálogo, pegar e devolver equipamentos.</p>
+        <div class="estado__acoes">
+            <a class="botao botao--primario" href="index.html">Ir para o catálogo</a>
+        </div>
+    </section>
+
+    <div id="area-admin" hidden>
+        <div class="paineis">
+
+            <!-- CADASTRAR EQUIPAMENTO: POST /equipamentos -->
+            <form class="cartao formulario" id="form-equipamento" novalidate>
+                <h2>Cadastrar equipamento</h2>
+
+                <div class="campo">
+                    <label for="patrimonio">Patrimônio</label>
+                    <p class="campo__dica" id="patrimonio-dica">O código da etiqueta, como NB-006.</p>
+                    <input class="campo__entrada" id="patrimonio" name="patrimonio" autocomplete="off" aria-describedby="patrimonio-dica patrimonio-erro">
+                    <p class="campo__erro" id="patrimonio-erro" hidden></p>
+                </div>
+
+                <div class="campo">
+                    <label for="nome-equipamento">Modelo</label>
+                    <p class="campo__dica" id="nome-equipamento-dica">Escolha um modelo da lista para somar mais uma unidade, ou digite um novo.</p>
+                    <input class="campo__entrada" id="nome-equipamento" name="nome" list="lista-modelos" autocomplete="off" aria-describedby="nome-equipamento-dica nome-equipamento-erro">
+                    <datalist id="lista-modelos"></datalist>
+                    <p class="campo__erro" id="nome-equipamento-erro" hidden></p>
+                </div>
+
+                <div class="campo">
+                    <label for="tipo">Tipo</label>
+                    <select class="campo__entrada" id="tipo" name="tipo" aria-describedby="tipo-erro"></select>
+                    <p class="campo__erro" id="tipo-erro" hidden></p>
+                </div>
+
+                <button class="botao botao--primario" id="botao-cadastrar-equipamento" type="submit">Cadastrar equipamento</button>
+            </form>
+
+            <!-- CADASTRAR PESSOA: POST /colaboradores -->
+            <form class="cartao formulario" id="form-pessoa" novalidate>
+                <h2>Cadastrar pessoa</h2>
+
+                <div class="campo">
+                    <label for="nome-pessoa">Nome</label>
+                    <input class="campo__entrada" id="nome-pessoa" name="nome" autocomplete="off" aria-describedby="nome-pessoa-erro">
+                    <p class="campo__erro" id="nome-pessoa-erro" hidden></p>
+                </div>
+
+                <div class="campo">
+                    <label for="email-pessoa">E-mail</label>
+                    <input class="campo__entrada" id="email-pessoa" name="email" type="email" autocomplete="off" inputmode="email" aria-describedby="email-pessoa-erro">
+                    <p class="campo__erro" id="email-pessoa-erro" hidden></p>
+                </div>
+
+                <div class="campo">
+                    <label for="cargo-pessoa">Cargo</label>
+                    <input class="campo__entrada" id="cargo-pessoa" name="cargo" autocomplete="off">
+                </div>
+
+                <div class="campo">
+                    <label for="senha-pessoa">Senha inicial</label>
+                    <div class="campo__senha">
+                        <input class="campo__entrada" id="senha-pessoa" name="senha" type="password" autocomplete="new-password" aria-describedby="regras-senha senha-pessoa-erro">
+                        <button class="campo__mostrar" id="mostrar-senha-pessoa" type="button" aria-pressed="false" aria-controls="senha-pessoa">Mostrar</button>
+                    </div>
+                    <ul class="regras-senha" id="regras-senha" aria-live="polite"></ul>
+                    <p class="campo__erro" id="senha-pessoa-erro" hidden></p>
+                </div>
+
+                <fieldset class="campo">
+                    <legend>Perfil</legend>
+                    <div class="opcoes">
+                        <label><input type="radio" name="perfil" value="COLABORADOR" checked> Colaborador</label>
+                        <label><input type="radio" name="perfil" value="ADMIN"> Administração</label>
+                    </div>
+                </fieldset>
+
+                <button class="botao botao--primario" id="botao-cadastrar-pessoa" type="submit">Cadastrar pessoa</button>
+            </form>
+        </div>
+
+        <!-- TODAS AS UNIDADES: GET /equipamentos -->
+        <section aria-labelledby="titulo-unidades">
+            <div class="tabela-topo">
+                <h2 id="titulo-unidades">Unidades cadastradas</h2>
+                <p id="resumo-unidades"></p>
+            </div>
+            <div class="tabela-rolagem">
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th scope="col">Patrimônio</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer id="rodape"></footer>
+
+
+<!-- JS: primeiro o que os outros usam; por último, o arquivo da página -->
+<script src="js/core/config.js"></script>
+<script src="js/core/utilidades.js"></script>
+<script src="js/dados/icones.js"></script>
+<script src="js/dados/produtos.js"></script>
+<script src="js/core/sessao.js"></script>
+<script src="js/componentes/avisos.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/componentes/cabecalho.js"></script>
+<script src="js/componentes/acessibilidade.js"></script>
+<script src="js/componentes/campos.js"></script>
+<script src="js/core/validacao.js"></script>
+<script src="js/paginas/empresa.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+/* =========================================================
+   ACERVO – selos de situação
+   Disponível, reservado, no prazo, atrasado, devolvido.
+   Pílula pequena, sempre com ícone + texto.
+   ========================================================= */
+
+.selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--pilula);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+
+    & svg {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+    }
+}
+
+.selo--disponivel,
+.selo--no-prazo {
+    background: var(--principal-suave);
+    color: var(--principal-forte);
+}
+
+.selo--emprestado,
+.selo--devolvido {
+    background: var(--superficie-baixa);
+    color: var(--texto-suave);
+}
+
+.selo--atrasado {
+    background: var(--atencao-suave);
+    color: var(--atencao);
+    border: var(--borda-atencao);
+}

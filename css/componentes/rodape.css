@@ -1,0 +1,139 @@
+/* =========================================================
+   ACERVO – rodapé (referência 8)
+   Fundo recuado com cantos grandes em cima: a marca e as redes
+   à esquerda, três colunas de links à direita e, embaixo,
+   o aviso do projeto com as tecnologias em selinhos.
+   ========================================================= */
+
+.rodape {
+    margin-top: var(--e8);
+    border-radius: var(--raio-3) var(--raio-3) 0 0;
+    background: var(--superficie-baixa);
+}
+
+.rodape__conteudo {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--e4);
+    padding-block: var(--e6) var(--e5);
+
+    & h2 {
+        margin-bottom: var(--e2);
+        font-family: var(--fonte);
+        font-size: 1.0625rem;
+        font-weight: 600;
+        letter-spacing: 0;
+    }
+
+    & ul {
+        display: grid;
+        gap: 0.6rem;
+    }
+
+    & a,
+    & li {
+        color: var(--texto-suave);
+        text-decoration: none;
+    }
+
+    & a:hover {
+        color: var(--texto);
+    }
+}
+
+.rodape__marca {
+    display: grid;
+    align-content: start;
+    gap: var(--e2);
+
+    & .cabecalho__marca {
+        display: inline-flex;
+        align-items: center;
+        justify-self: start;
+    }
+
+    & p {
+        max-width: 24rem;
+        color: var(--texto-suave);
+    }
+}
+
+.rodape__redes {
+    display: flex;
+    gap: var(--e1);
+    margin-top: var(--e1);
+
+    & a {
+        display: grid;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 50%;
+        background: var(--superficie);
+        color: var(--texto);
+        transition: background-color 0.2s;
+
+        &:hover {
+            background: var(--principal-suave);
+        }
+    }
+
+    & svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
+
+.rodape__contato dt {
+    color: var(--texto);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.rodape__contato dd {
+    margin-bottom: var(--e2);
+    color: var(--texto-suave);
+}
+
+.rodape__base {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e2);
+    padding-block: var(--e3);
+    border-top: 1px solid var(--linha);
+    color: var(--texto-suave);
+    font-size: 0.9375rem;
+}
+
+.rodape__tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--e1);
+
+    & span {
+        padding: 0.3rem 0.75rem;
+        border-radius: var(--pilula);
+        background: var(--tinta);
+        color: var(--sobre-tinta);
+        font-size: 0.8125rem;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 56rem) {
+    .rodape {
+        border-radius: var(--raio-2) var(--raio-2) 0 0;
+    }
+
+    .rodape__conteudo {
+        grid-template-columns: 1fr 1fr;
+
+        & .rodape__marca {
+            grid-column: 1 / -1;
+        }
+    }
+}

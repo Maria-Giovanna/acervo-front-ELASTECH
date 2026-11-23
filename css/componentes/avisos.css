@@ -1,0 +1,47 @@
+/* =========================================================
+   ACERVO – avisos
+   Mensagens no canto da tela depois de uma ação.
+   ========================================================= */
+
+.avisos {
+    position: fixed;
+    right: var(--e3);
+    bottom: var(--e3);
+    z-index: 30;
+    display: grid;
+    gap: var(--e1);
+    width: min(24rem, calc(100% - 2 * var(--e2)));
+}
+
+.aviso {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--e1);
+    padding: var(--e2);
+    border-radius: var(--raio-1);
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+    font-weight: 600;
+    transition: opacity 0.25s, translate 0.25s;
+
+    @starting-style {
+        opacity: 0;
+        translate: 0 0.75rem;
+    }
+
+    & svg {
+        width: 1.3rem;
+        height: 1.3rem;
+        flex-shrink: 0;
+        color: var(--principal);
+    }
+
+    &.aviso--erro svg {
+        color: var(--erro);
+    }
+
+    &.aviso--saindo {
+        opacity: 0;
+        translate: 0 0.75rem;
+    }
+}

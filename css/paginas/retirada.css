@@ -1,0 +1,133 @@
+/* =========================================================
+   ACERVO – confirmar reserva (retirada.html)
+   Três passos no topo, o equipamento à esquerda (mesmo cartão
+   do catálogo) e o resumo com o botão de confirmar à direita.
+   ========================================================= */
+
+.voltar {
+    margin-bottom: var(--e3);
+}
+
+/* //OS PASSOS: Escolher → Confirmar → Pronto */
+.passos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e1);
+    margin-bottom: var(--e4);
+    counter-reset: passo;
+
+    & li {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--e1);
+        padding: 0.35rem 1rem 0.35rem 0.35rem;
+        border-radius: var(--pilula);
+        background: var(--superficie);
+        color: var(--texto-suave);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        counter-increment: passo;
+    }
+
+    & li::before {
+        content: counter(passo);
+        display: grid;
+        place-items: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background: var(--superficie-baixa);
+    }
+
+    & li[data-feito="true"]::before {
+        content: "✓";
+        background: var(--principal-suave);
+        color: var(--principal-forte);
+    }
+
+    & li[data-atual="true"] {
+        color: var(--texto);
+
+        &::before {
+            background: var(--principal);
+            color: var(--sobre-principal);
+        }
+    }
+}
+
+/* //A RESERVA: produto + resumo */
+.reserva {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: var(--e3);
+    align-items: start;
+}
+
+.reserva__produto {
+    padding-bottom: var(--e4);
+
+    & .titulo-cartao {
+        font-size: 1.5rem;
+    }
+}
+
+.reserva__destaques {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: var(--e1);
+    color: var(--texto-suave);
+
+    & li::before {
+        content: "• ";
+        color: var(--principal);
+    }
+}
+
+.reserva__resumo {
+    display: grid;
+    gap: var(--e3);
+}
+
+.reserva__dados {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--e2);
+
+    & div {
+        padding: var(--e2);
+        border-radius: var(--raio-1);
+        background: var(--fundo);
+    }
+
+    & dt {
+        color: var(--texto-suave);
+        font-size: 0.875rem;
+    }
+
+    & dd {
+        font-weight: 600;
+        overflow-wrap: anywhere;
+    }
+}
+
+.reserva__nota {
+    color: var(--texto-suave);
+    font-size: 0.9375rem;
+}
+
+.reserva__acoes {
+    display: grid;
+    gap: var(--e1);
+}
+
+@media (max-width: 56rem) {
+    .reserva {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 30rem) {
+    .reserva__dados {
+        grid-template-columns: 1fr;
+    }
+}

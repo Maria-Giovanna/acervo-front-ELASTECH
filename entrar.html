@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entrar – Acervo</title>
+    <meta name="description" content="Entre com o e-mail e a senha da empresa para reservar equipamentos.">
+
+    <!-- aplica tema, tamanho do texto e cores ANTES de desenhar a página -->
+    <script src="js/core/preferencias.js"></script>
+
+    <!-- fontes: Archivo (títulos) e Atkinson Hyperlegible Next (texto, feita para baixa visão) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS: sistema (base) → peças (componentes) → página -->
+    <link rel="stylesheet" href="css/base/tokens.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <link rel="stylesheet" href="css/base/tipografia.css">
+    <link rel="stylesheet" href="css/base/layout.css">
+    <link rel="stylesheet" href="css/componentes/botoes.css">
+    <link rel="stylesheet" href="css/componentes/cartao.css">
+    <link rel="stylesheet" href="css/componentes/formularios.css">
+    <link rel="stylesheet" href="css/componentes/selos.css">
+    <link rel="stylesheet" href="css/componentes/estados.css">
+    <link rel="stylesheet" href="css/componentes/avisos.css">
+    <link rel="stylesheet" href="css/componentes/cabecalho.css">
+    <link rel="stylesheet" href="css/componentes/rodape.css">
+    <link rel="stylesheet" href="css/paginas/entrar.css">
+</head>
+<body data-pagina="entrar">
+
+<header id="cabecalho"></header>
+
+<main id="conteudo" class="pagina">
+    <section class="entrar">
+        <div class="entrar__texto">
+            <p class="selo-secao">Acesso</p>
+            <h1 class="titulo-secao">Entre para reservar</h1>
+            <p>Use o e-mail e a senha que a empresa cadastrou para você. Ainda não tem acesso? Fale com a equipe de TI pelo ramal 2040.</p>
+        </div>
+
+        <form class="cartao formulario" id="form-entrar" novalidate>
+            <p class="alerta alerta--info" id="alerta-motivo" hidden></p>
+
+            <div class="campo">
+                <label for="email">E-mail da empresa</label>
+                <input class="campo__entrada" id="email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="email-erro">
+                <p class="campo__erro" id="email-erro" hidden></p>
+            </div>
+
+            <div class="campo">
+                <label for="senha">Senha</label>
+                <div class="campo__senha">
+                    <input class="campo__entrada" id="senha" name="senha" type="password" autocomplete="current-password" aria-describedby="senha-erro">
+                    <button class="campo__mostrar" id="mostrar-senha" type="button" aria-pressed="false" aria-controls="senha">Mostrar</button>
+                </div>
+                <p class="campo__erro" id="senha-erro" hidden></p>
+            </div>
+
+            <p class="alerta alerta--erro" id="alerta-erro" role="alert" hidden></p>
+
+            <button class="botao botao--primario botao--largo" id="botao-entrar-form" type="submit">Entrar</button>
+        </form>
+    </section>
+</main>
+
+<footer id="rodape"></footer>
+
+<!-- JS: primeiro o que os outros usam; por último, o arquivo da página -->
+<script src="js/core/config.js"></script>
+<script src="js/core/utilidades.js"></script>
+<script src="js/dados/icones.js"></script>
+<script src="js/dados/produtos.js"></script>
+<script src="js/core/sessao.js"></script>
+<script src="js/componentes/avisos.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/componentes/cabecalho.js"></script>
+<script src="js/componentes/acessibilidade.js"></script>
+<script src="js/componentes/campos.js"></script>
+<script src="js/core/validacao.js"></script>
+<script src="js/paginas/entrar.js"></script>
+</body>
+</html>

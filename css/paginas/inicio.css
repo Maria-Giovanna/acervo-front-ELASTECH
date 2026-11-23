@@ -1,0 +1,576 @@
+/* =========================================================
+   ACERVO – página inicial (index.html)
+   Hero com foto (ref. 2), catálogo por tipos (ref. 3),
+   avaliações empilhadas (refs. 4 e 5) e perguntas (refs. 6 e 7).
+   ========================================================= */
+
+
+/* //HERO (referência 2): foto ao fundo, texto no centro, 2 botões
+   e três cartões de vidro embaixo com números que vêm da API */
+.hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: var(--e5);
+    min-height: 100svh;
+    padding: 7.5rem var(--e3) 0;
+    overflow: hidden;
+    color: #FFFFFF;
+    text-align: center;
+
+    /* a foto (img/hero.webp). Sem ela, fica o degradê quente por baixo */
+    background:
+        url("../../img/hero.webp") center / cover no-repeat,
+        radial-gradient(70% 60% at 70% 30%, #6B6A3A 0%, transparent 70%),
+        linear-gradient(160deg, #3A3F22 0%, #1C1E19 70%);
+
+    /* véu escuro: o texto branco lê bem em cima de qualquer foto */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(to bottom, rgb(20 22 16 / 0.55), rgb(20 22 16 / 0.3) 45%, rgb(20 22 16 / 0.45));
+    }
+
+    /* a foto (e o pé dos cartões) se dissolve no fundo da página, como na referência */
+    &::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 7rem;
+        z-index: 1;
+        background: linear-gradient(to bottom, transparent, var(--fundo));
+        pointer-events: none;
+    }
+}
+
+.hero__conteudo {
+    display: grid;
+    justify-items: center;
+    gap: var(--e3);
+    max-width: 56rem;
+
+    & p {
+        max-width: 34rem;
+        color: rgb(255 255 255 / 0.88);
+        font-size: 1.25rem;
+    }
+
+    /* o selo é o "chapéu" do título: no centro e no tamanho de selo,
+       sem herdar o tamanho do texto de apoio da regra de cima */
+    & .selo-secao {
+        justify-self: center;
+        font-size: 0.875rem;
+    }
+}
+
+.hero__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--e2);
+    margin-top: var(--e1);
+}
+
+/* os três cartões de vidro: mesma largura, mesma altura, na mesma linha */
+.hero__cartoes {
+    position: relative;
+    z-index: 2;                  /* acima do degradê do pé da foto */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;        /* os três crescem até a altura do mais alto */
+    gap: var(--e3);
+    width: min(100%, 70rem);     /* largo o bastante pro título e a pílula caberem na mesma linha */
+    margin-bottom: var(--e6);
+    text-align: left;
+}
+
+.vidro {
+    display: grid;
+    gap: var(--e2);
+    padding: var(--e3);
+    border: 1px solid rgb(255 255 255 / 0.14);
+    border-radius: var(--raio-2);
+    background: rgb(28 30 25 / 0.55);
+    backdrop-filter: blur(16px);
+    color: #FFFFFF;
+}
+
+/* os cartões dos lados ficam com o conteúdo no meio da altura */
+.vidro--lateral {
+    align-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.vidro__icone {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--oliva-claro);
+    color: #1C1E19;
+    box-shadow: 0 0 0 6px rgb(201 213 158 / 0.18);
+
+    & svg {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+}
+
+.vidro__titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.vidro__suave {
+    color: rgb(255 255 255 / 0.7);
+    font-size: 0.875rem;
+}
+
+/* o cartão do meio: a lista do que está livre hoje */
+.vidro--principal {
+    align-content: start;        /* o título e a lista começam no topo */
+}
+
+.vidro__topo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--e2);
+}
+
+.vidro__lista {
+    display: grid;
+    gap: var(--e1);
+
+    & li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--e2);
+        padding: var(--e1) var(--e2);
+        border-radius: var(--raio-1);
+        background: rgb(255 255 255 / 0.07);
+    }
+
+    & strong {
+        display: block;
+        font-size: 0.9375rem;
+    }
+}
+
+.vidro__pilula {
+    flex-shrink: 0;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--pilula);
+    background: var(--oliva-claro);
+    color: #1C1E19;
+    font-size: 0.8125rem;
+    font-weight: 700;
+}
+
+.vidro__pilula--escura {
+    background: rgb(255 255 255 / 0.12);
+    color: #FFFFFF;
+}
+
+/* o cartão da direita: os tipos mais procurados em círculos */
+.vidro__circulos {
+    display: flex;
+    gap: var(--e2);
+
+    & li {
+        display: grid;
+        justify-items: center;
+        gap: 0.35rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    & span {
+        display: grid;
+        place-items: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background: #FFFFFF;
+        color: #1C1E19;
+    }
+
+    & svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+@media (max-width: 56rem) {
+    .hero {
+        padding-top: 8rem;
+        gap: var(--e5);
+    }
+
+    .hero__cartoes {
+        grid-template-columns: 1fr;
+        width: min(100%, 26rem);
+    }
+
+    .vidro--lateral {
+        display: none;
+    }
+}
+
+
+/* //AVALIAÇÕES (referências 4 e 5): o lado esquerdo fica parado (sticky)
+   e os cartões da direita sobem e vão se empilhando um em cima do outro */
+.depoimentos {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--e6);
+    align-items: start;
+}
+
+.depoimentos__lado {
+    position: sticky;
+    top: 8rem;
+    display: grid;
+    gap: var(--e3);
+
+    & > p {
+        max-width: 26rem;
+        color: var(--texto-suave);
+        font-size: 1.125rem;
+    }
+}
+
+/* a prova: rostinhos empilhados + a nota */
+.prova {
+    display: flex;
+    align-items: center;
+    gap: var(--e2);
+}
+
+.prova__rostos {
+    display: flex;
+
+    & span {
+        display: grid;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-left: -0.6rem;
+        border: 3px solid var(--fundo);
+        border-radius: 50%;
+        background: var(--principal-suave);
+        color: var(--principal-forte);
+        font-size: 0.875rem;
+        font-weight: 700;
+    }
+
+    & span:first-child {
+        margin-left: 0;
+    }
+
+    & span:last-child {
+        background: var(--tinta);
+        color: var(--sobre-tinta);
+        font-size: 0.75rem;
+    }
+}
+
+.prova__nota {
+    font-family: var(--fonte-titulo);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.prova__estrelas {
+    display: grid;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+
+    & span:first-child {
+        color: var(--principal);
+        letter-spacing: 0.1em;
+    }
+}
+
+.depoimentos__lista {
+    display: grid;
+    gap: var(--e4);
+    padding-bottom: var(--e4);
+}
+
+.depoimento {
+    position: sticky;
+    top: calc(7rem + var(--ordem) * 1.25rem);   /* cada cartão para um pouquinho abaixo do anterior */
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--e3);
+    min-height: 19rem;
+    padding: var(--e4);
+    border-radius: var(--raio-2);
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+    rotate: var(--giro);
+}
+
+.depoimento:nth-child(1) { --ordem: 0; --giro: -1deg; }
+.depoimento:nth-child(2) { --ordem: 1; --giro: 0.8deg; background: var(--principal-suave); }
+.depoimento:nth-child(3) { --ordem: 2; --giro: -0.6deg; background: var(--tinta); color: var(--sobre-tinta); }
+.depoimento:nth-child(4) { --ordem: 3; --giro: 0.5deg; }
+
+.depoimento__topo {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+
+    & span:first-child {
+        color: var(--principal);
+        letter-spacing: 0.1em;
+    }
+
+    & span:last-child {
+        color: var(--texto-suave);
+        font-variant-numeric: tabular-nums;
+    }
+}
+
+.depoimento:nth-child(3) .depoimento__topo span:first-child {
+    color: var(--oliva-claro);
+}
+
+.depoimento:nth-child(3) .depoimento__topo span:last-child,
+.depoimento:nth-child(3) .depoimento__autor span {
+    color: color-mix(in srgb, var(--sobre-tinta) 70%, transparent);
+}
+
+.depoimento blockquote {
+    align-self: center;
+    max-width: 24ch;
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.4rem, 1.1rem + 0.9vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+}
+
+.depoimento__foto {
+    position: relative;
+    grid-row: 2 / 4;
+    grid-column: 2;
+    align-self: end;
+    display: grid;
+    place-items: center;
+    width: 9rem;
+    aspect-ratio: 1;
+    padding: var(--e2);
+    border-radius: var(--raio-1);
+    background: var(--fundo-foto);
+
+    & img {
+        position: absolute;
+        inset: 12%;
+        width: 76%;
+        height: 76%;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+    }
+
+    & > svg {
+        width: 50%;
+        color: var(--texto-suave);
+    }
+}
+
+.depoimento__autor {
+    display: flex;
+    align-items: center;
+    gap: var(--e2);
+
+    & .depoimento__rosto {
+        display: grid;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 50%;
+        background: var(--principal);
+        color: var(--sobre-principal);
+        font-weight: 700;
+    }
+
+    & strong {
+        display: block;
+    }
+
+    & span {
+        color: var(--texto-suave);
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 56rem) {
+    .depoimentos {
+        grid-template-columns: 1fr;
+        gap: var(--e4);
+    }
+
+    .depoimentos__lado {
+        position: static;
+    }
+
+    .depoimento {
+        top: calc(5.5rem + var(--ordem) * 1rem);
+        grid-template-columns: 1fr;
+        min-height: 0;
+        padding: var(--e3);
+    }
+
+    .depoimento__foto {
+        display: none;
+    }
+}
+
+
+/* //PERGUNTAS (referências 6 e 7), mas alinhadas:
+   o lado esquerdo estica até a altura da lista. O título fica
+   alinhado com a primeira pergunta, e o cartão de ajuda com a última,
+   com tudo aberto ou fechado. */
+.perguntas {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--e6);
+    align-items: stretch;
+}
+
+.perguntas__lado {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--e4);
+}
+
+.perguntas__titulo {
+    display: grid;
+    gap: var(--e2);
+}
+
+.perguntas__ajuda {
+    display: grid;
+    justify-items: start;
+    gap: var(--e2);
+
+    & p {
+        color: var(--texto-suave);
+    }
+}
+
+.perguntas__lista {
+    display: grid;
+    align-content: start;
+    gap: var(--e2);
+}
+
+/* interpolate-size: deixa animar a altura até "auto" ao abrir */
+:root {
+    interpolate-size: allow-keywords;
+}
+
+.pergunta {
+    border-radius: var(--raio-2);
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+
+    & summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--e2);
+        min-height: 4.5rem;
+        padding: var(--e2) var(--e3);
+        font-weight: 600;
+        cursor: pointer;
+        list-style: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        /* o botão redondo escuro: + vira × girando */
+        &::after {
+            content: "";
+            flex-shrink: 0;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            background:
+                linear-gradient(var(--sobre-tinta), var(--sobre-tinta)) center / 0.85rem 2px no-repeat,
+                linear-gradient(var(--sobre-tinta), var(--sobre-tinta)) center / 2px 0.85rem no-repeat,
+                var(--tinta);
+            transition: rotate 0.3s;
+        }
+
+        &:focus-visible {
+            border-radius: var(--raio-2);
+        }
+    }
+
+    &[open] summary::after {
+        rotate: 45deg;
+    }
+
+    /* a resposta começa exatamente onde a pergunta começa, e para antes do botão */
+    & p {
+        padding: 0 calc(var(--e3) + 2.25rem + var(--e2)) var(--e3) var(--e3);
+        color: var(--texto-suave);
+    }
+
+    &::details-content {
+        block-size: 0;
+        overflow: hidden;
+        transition: block-size 0.3s, content-visibility 0.3s allow-discrete;
+    }
+
+    &[open]::details-content {
+        block-size: auto;
+    }
+}
+
+@media (max-width: 56rem) {
+    .perguntas {
+        grid-template-columns: 1fr;
+        gap: var(--e4);
+    }
+
+    .perguntas__ajuda {
+        order: 2;
+    }
+
+    .perguntas__lado {
+        display: contents;   /* no celular: título, perguntas e, por último, o cartão de ajuda */
+    }
+
+    .perguntas__titulo {
+        order: 0;
+    }
+
+    .perguntas__lista {
+        order: 1;
+    }
+
+    .pergunta p {
+        padding-right: var(--e3);
+    }
+}

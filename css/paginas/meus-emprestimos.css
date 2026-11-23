@@ -1,0 +1,77 @@
+/* =========================================================
+   ACERVO – meus empréstimos (meus-emprestimos.html)
+   Cada empréstimo é um cartão branco: foto, nome, datas,
+   situação e o botão de devolver.
+   ========================================================= */
+
+.lista-emprestimos {
+    display: grid;
+    gap: var(--e2);
+}
+
+.emprestimo {
+    display: grid;
+    grid-template-columns: 6rem 1fr auto;
+    gap: var(--e3);
+    align-items: center;
+    padding: var(--e2);
+    border-radius: var(--raio-2);
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+
+    /* atrasado: a borda tracejada aparece também no modo tons de cinza */
+    &:has(.selo--atrasado) {
+        outline: 2px solid var(--atencao);
+        outline-offset: -2px;
+    }
+}
+
+.emprestimo__foto {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    padding: var(--e1);
+    border-radius: var(--raio-1);
+    background: var(--fundo-foto);
+
+    & img {
+        position: absolute;
+        inset: 10%;
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        mix-blend-mode: multiply;
+    }
+
+    & > svg {
+        width: 55%;
+        color: var(--texto-suave);
+    }
+}
+
+:root[data-tema="escuro"] .emprestimo__foto img {
+    mix-blend-mode: normal;
+}
+
+.emprestimo__info {
+    display: grid;
+    justify-items: start;
+    gap: 0.25rem;
+}
+
+.emprestimo__datas {
+    color: var(--texto-suave);
+    font-size: 0.9375rem;
+}
+
+@media (max-width: 40rem) {
+    .emprestimo {
+        grid-template-columns: 4.5rem 1fr;
+        gap: var(--e2);
+
+        & .botao {
+            grid-column: 1 / -1;
+        }
+    }
+}

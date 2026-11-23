@@ -1,0 +1,145 @@
+/* =========================================================
+   ACERVO – tokens (o sistema visual inteiro mora aqui)
+
+   REGRAS DO SISTEMA (nenhuma tela foge delas):
+   - Cores: neutros quentes + verde-oliva. Nada além desta lista.
+   - Raios: --raio-1 (fotos, campos, peças internas), --raio-2 (cartões)
+     e --raio-3 (só o rodapé, a maior área). Pílula só em botões e selos.
+   - Espaços: múltiplos de 8px (--e1 a --e8).
+   - Texto: Archivo nos títulos, Atkinson Hyperlegible Next no resto.
+   - Cartão: sempre branco (--superficie), sem borda, sombra suave.
+   ========================================================= */
+
+
+/* //TEMA: claro, escuro ou igual ao sistema */
+:root {
+    color-scheme: light dark;
+}
+
+:root[data-tema="claro"] {
+    color-scheme: light;
+}
+
+:root[data-tema="escuro"] {
+    color-scheme: dark;
+}
+
+
+/* //CORES */
+:root {
+    /* neutros quentes */
+    --fundo: light-dark(#F6F6F2, #121410);           /* fundo da página */
+    --superficie: light-dark(#FFFFFF, #1C1F19);      /* cartões */
+    --superficie-baixa: light-dark(#EEEEE8, #20241C); /* rodapé e áreas recuadas */
+    --fundo-foto: light-dark(#EDEDE7, #262A22);      /* atrás das fotos */
+    --linha: light-dark(#DFDFD7, #30352B);
+    --texto: light-dark(#1C1E19, #ECEEE6);
+    --texto-suave: light-dark(#5C6057, #A7AC9F);
+
+    /* verde-oliva */
+    --principal: light-dark(#4A5A27, #B8C78A);
+    --principal-forte: light-dark(#36431B, #D0DCAA);
+    --principal-suave: light-dark(#E6EAD8, #2A3220);
+    --sobre-principal: light-dark(#FFFFFF, #1A2008);
+
+    /* verde-oliva claro: o destaque usado em cima de fundo escuro (vidro do hero, cartão escuro) */
+    --oliva-claro: #C9D59E;
+
+    /* tinta: o escuro do sistema (cartão escuro das avaliações, ícones do FAQ) */
+    --tinta: light-dark(#1C1E19, #ECEEE6);
+    --sobre-tinta: light-dark(#F6F6F2, #1C1E19);
+
+    /* atenção e erro (sempre com ícone e texto, nunca só a cor) */
+    --atencao: light-dark(#8E2C5B, #F2A0C4);
+    --atencao-suave: light-dark(#F6E3EC, #3B1A2A);
+    --erro: light-dark(#B3261E, #FFB4A9);
+    --erro-suave: light-dark(#FCE8E6, #3D1C19);
+    --borda-atencao: 1px solid transparent;
+
+    --sombra: 0 1px 2px light-dark(rgb(28 30 25 / 0.04), rgb(0 0 0 / 0.3)),
+              0 8px 24px light-dark(rgb(28 30 25 / 0.06), rgb(0 0 0 / 0.3));
+}
+
+
+/* //MODOS DE VISÃO PARA DALTONISMO (trocam só as cores de destaque) */
+:root[data-visao="vermelho-verde"] {
+    --principal: light-dark(#0B5394, #8DB8E8);
+    --principal-forte: light-dark(#083E70, #B5D1F1);
+    --principal-suave: light-dark(#E3EDF8, #1A2A3D);
+    --sobre-principal: light-dark(#FFFFFF, #0A1A2B);
+    --atencao: light-dark(#A84300, #FFB27A);
+    --atencao-suave: light-dark(#FCE9DC, #3D2416);
+}
+
+:root[data-visao="azul-amarelo"] {
+    --principal: light-dark(#00636E, #6FCFD9);
+    --principal-forte: light-dark(#004A52, #9DE0E7);
+    --principal-suave: light-dark(#DDF1F3, #15333A);
+    --sobre-principal: light-dark(#FFFFFF, #06272B);
+    --atencao: light-dark(#B0144F, #FF9EC2);
+    --atencao-suave: light-dark(#FBE4EC, #3D1625);
+}
+
+:root[data-visao="cinza"] {
+    --fundo: light-dark(#F2F2F2, #121212);
+    --superficie: light-dark(#FFFFFF, #1C1C1C);
+    --superficie-baixa: light-dark(#EBEBEB, #222222);
+    --fundo-foto: light-dark(#EDEDED, #262626);
+    --linha: light-dark(#D9D9D9, #333333);
+    --texto: light-dark(#141414, #F0F0F0);
+    --texto-suave: light-dark(#4A4A4A, #B0B0B0);
+    --principal: light-dark(#1F1F1F, #EDEDED);
+    --principal-forte: light-dark(#000000, #FFFFFF);
+    --principal-suave: light-dark(#E6E6E6, #2B2B2B);
+    --sobre-principal: light-dark(#FFFFFF, #000000);
+    --atencao: light-dark(#141414, #F0F0F0);
+    --atencao-suave: light-dark(#FFFFFF, #000000);
+    --erro: light-dark(#141414, #F0F0F0);
+    --erro-suave: light-dark(#FFFFFF, #000000);
+    --borda-atencao: 2px dashed var(--atencao);
+}
+
+:root[data-visao="cinza"] img {
+    filter: grayscale(1);
+}
+
+
+/* //TAMANHO DO TEXTO (tudo em rem: aumentar a raiz aumenta o site todo) */
+:root {
+    font-size: 100%;
+}
+
+:root[data-fonte="1"] {
+    font-size: 87.5%;
+}
+
+:root[data-fonte="3"] {
+    font-size: 112.5%;
+}
+
+:root[data-fonte="4"] {
+    font-size: 125%;
+}
+
+
+/* //FORMAS, ESPAÇOS E LETRAS */
+:root {
+    --raio-1: 1rem;
+    --raio-2: 1.5rem;
+    --raio-3: 3rem;
+    --pilula: 999px;
+
+    --e1: 0.5rem;    /*  8px */
+    --e2: 1rem;      /* 16px */
+    --e3: 1.5rem;    /* 24px */
+    --e4: 2rem;      /* 32px */
+    --e5: 3rem;      /* 48px */
+    --e6: 4rem;      /* 64px */
+    --e8: 6rem;      /* 96px */
+
+    --largura: 75rem;
+    --margem: max(var(--e3), (100% - var(--largura)) / 2);
+
+    --fonte: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+    --fonte-titulo: "Archivo", "Atkinson Hyperlegible Next", system-ui, sans-serif;
+}

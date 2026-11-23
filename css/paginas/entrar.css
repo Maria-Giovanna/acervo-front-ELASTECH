@@ -1,0 +1,35 @@
+/* =========================================================
+   ACERVO – entrar (entrar.html)
+   Texto de um lado, formulário no cartão do outro.
+   ========================================================= */
+
+.entrar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 27rem);
+    gap: var(--e6);
+    align-items: center;
+    min-height: calc(100dvh - 22rem);
+}
+
+.entrar__texto {
+    display: grid;
+    gap: var(--e2);
+
+    & p:last-child {
+        max-width: 30rem;
+        color: var(--texto-suave);
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 56rem) {
+    .entrar {
+        grid-template-columns: 1fr;
+        gap: var(--e4);
+        min-height: 0;
+    }
+
+    .entrar .cartao {
+        padding: var(--e3);
+    }
+}

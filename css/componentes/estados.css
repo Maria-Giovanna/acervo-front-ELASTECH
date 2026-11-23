@@ -1,0 +1,69 @@
+/* =========================================================
+   ACERVO – estados
+   Carregando (esqueleto), lista vazia e a tela de sucesso.
+   ========================================================= */
+
+.esqueleto {
+    border-radius: var(--raio-2);
+    background: linear-gradient(100deg, var(--superficie) 40%, var(--superficie-baixa) 50%, var(--superficie) 60%);
+    background-size: 300% 100%;
+    animation: brilho 1.4s ease-in-out infinite;
+}
+
+@keyframes brilho {
+    from {
+        background-position: 100% 0;
+    }
+
+    to {
+        background-position: 0 0;
+    }
+}
+
+.vazio {
+    grid-column: 1 / -1;
+    padding: var(--e4);
+    border-radius: var(--raio-2);
+    background: var(--superficie);
+    color: var(--texto-suave);
+}
+
+.estado {
+    display: grid;
+    justify-items: center;
+    gap: var(--e2);
+    padding: var(--e5) var(--e4);
+    border-radius: var(--raio-2);
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+    text-align: center;
+
+    & p {
+        max-width: 32rem;
+        color: var(--texto-suave);
+    }
+}
+
+.estado__icone {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--principal);
+    color: var(--sobre-principal);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--principal) 35%, transparent);
+
+    & svg {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+}
+
+.estado__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--e1);
+    margin-top: var(--e1);
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acervo – empréstimo de equipamentos</title>
+    <meta name="description" content="Reserve notebooks, monitores e outros equipamentos da empresa.">
+
+    <!-- aplica tema, tamanho do texto e cores ANTES de desenhar a página -->
+    <script src="js/core/preferencias.js"></script>
+
+    <!-- fontes: Archivo (títulos) e Atkinson Hyperlegible Next (texto, feita para baixa visão) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS: sistema (base) → peças (componentes) → página -->
+    <link rel="stylesheet" href="css/base/tokens.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <link rel="stylesheet" href="css/base/tipografia.css">
+    <link rel="stylesheet" href="css/base/layout.css">
+    <link rel="stylesheet" href="css/componentes/botoes.css">
+    <link rel="stylesheet" href="css/componentes/cartao.css">
+    <link rel="stylesheet" href="css/componentes/formularios.css">
+    <link rel="stylesheet" href="css/componentes/selos.css">
+    <link rel="stylesheet" href="css/componentes/estados.css">
+    <link rel="stylesheet" href="css/componentes/avisos.css">
+    <link rel="stylesheet" href="css/componentes/cabecalho.css">
+    <link rel="stylesheet" href="css/componentes/rodape.css">
+    <link rel="stylesheet" href="css/componentes/cartao-produto.css">
+    <link rel="stylesheet" href="css/paginas/inicio.css">
+</head>
+<body data-pagina="inicio" data-hero>
+
+<header id="cabecalho"></header>
+
+<main id="conteudo">
+
+    <!-- HERO (ref. 2): foto ao fundo (img/hero.webp), título, 2 botões e cartões com dados da API -->
+    <section class="hero sobre-imagem" aria-labelledby="titulo-pagina">
+        <div class="hero__conteudo">
+            <p class="selo-secao">Reserve em poucos cliques</p>
+            <h1 class="titulo-abertura" id="titulo-pagina">Os equipamentos da empresa, quando você precisar</h1>
+            <p>Notebooks, monitores, headsets e mais. Você reserva, retira hoje e devolve em até 14 dias.</p>
+            <div class="hero__acoes">
+                <a class="botao botao--primario" href="#catalogo">Ver o catálogo</a>
+                <a class="botao botao--secundario" id="hero-reservar" href="entrar.html?voltar=index.html%23catalogo&amp;motivo=reservar">Entrar para reservar</a>
+            </div>
+        </div>
+
+        <div class="hero__cartoes">
+            <article class="vidro vidro--lateral">
+                <span class="vidro__icone" id="hero-icone"></span>
+                <p class="vidro__titulo" id="hero-livres">Contando os aparelhos…</p>
+            </article>
+
+            <article class="vidro vidro--principal">
+                <div class="vidro__topo">
+                    <div>
+                        <p class="vidro__titulo">Disponíveis hoje</p>
+                        <p class="vidro__suave" id="hero-resumo">Carregando…</p>
+                    </div>
+                    <span class="vidro__pilula vidro__pilula--escura">14 dias de prazo</span>
+                </div>
+                <ul class="vidro__lista" id="hero-lista"></ul>
+            </article>
+
+            <article class="vidro vidro--lateral">
+                <p class="vidro__titulo">Mais procurados</p>
+                <ul class="vidro__circulos" id="hero-tipos"></ul>
+            </article>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO (ref. 3): primeiro os tipos; ao escolher um, aparecem os modelos dele -->
+    <section class="secao container" id="catalogo" aria-labelledby="titulo-catalogo">
+        <div class="cabeca-secao">
+            <div class="cabeca-secao__texto">
+                <p class="selo-secao">Catálogo</p>
+                <h2 class="titulo-secao" id="titulo-catalogo">Do que você precisa hoje?</h2>
+                <p id="texto-catalogo" aria-live="polite">Escolha um tipo de equipamento para ver os modelos e quantos estão livres agora.</p>
+            </div>
+            <button class="link-seta" type="button" id="alternar-catalogo"></button>
+        </div>
+
+        <ul class="grade-cartoes" id="grade-catalogo"></ul>
+    </section>
+
+    <!-- AVALIAÇÕES (refs. 4 e 5): o lado esquerdo fica parado e os cartões se empilham -->
+    <section class="secao container depoimentos" id="avaliacoes" aria-labelledby="titulo-avaliacoes">
+        <div class="depoimentos__lado">
+            <p class="selo-secao">Avaliações</p>
+            <h2 class="titulo-secao" id="titulo-avaliacoes">Quem reserva, recomenda</h2>
+            <p>Equipamentos revisados, prazo claro e devolução sem burocracia. Veja o que diz quem já reservou com a gente.</p>
+            <div class="prova">
+                <p class="prova__rostos" aria-hidden="true">
+                    <span>CM</span>
+                    <span>RT</span>
+                    <span>JS</span>
+                    <span>+80</span>
+                </p>
+                <p class="prova__nota">4,9</p>
+                <p class="prova__estrelas">
+                    <span aria-hidden="true">★★★★★</span>
+                    <span>nota média de quem devolveu</span>
+                </p>
+            </div>
+        </div>
+
+        <ol class="depoimentos__lista">
+            <li class="depoimento" data-modelo="Notebook Dell Latitude 5450">
+                <p class="depoimento__topo">
+                    <span aria-label="5 de 5 estrelas">★★★★★</span>
+                    <span>01 / 04</span>
+                </p>
+                <blockquote>“Meu notebook parou numa segunda e, na mesma manhã, eu já estava trabalhando com um Latitude. Sem papelada nenhuma.”</blockquote>
+                <div class="depoimento__foto"></div>
+                <p class="depoimento__autor">
+                    <span class="depoimento__rosto" aria-hidden="true">CM</span>
+                    <span>
+                        <strong>Carla M.</strong>
+                        <span>Analista financeira, reservou o Dell Latitude 5450</span>
+                    </span>
+                </p>
+            </li>
+            <li class="depoimento" data-modelo="Headset Jabra Evolve2 55">
+                <p class="depoimento__topo">
+                    <span aria-label="5 de 5 estrelas">★★★★★</span>
+                    <span>02 / 04</span>
+                </p>
+                <blockquote>“Peguei o headset para uma semana de reuniões com clientes. Veio impecável, e a devolução levou um minuto.”</blockquote>
+                <div class="depoimento__foto"></div>
+                <p class="depoimento__autor">
+                    <span class="depoimento__rosto" aria-hidden="true">RT</span>
+                    <span>
+                        <strong>Rafael T.</strong>
+                        <span>Executivo de vendas, reservou o Jabra Evolve2 55</span>
+                    </span>
+                </p>
+            </li>
+            <li class="depoimento" data-modelo="Mesa digitalizadora Wacom Intuos M">
+                <p class="depoimento__topo">
+                    <span aria-label="5 de 5 estrelas">★★★★★</span>
+                    <span>03 / 04</span>
+                </p>
+                <blockquote>“Ver quantas unidades estão livres antes de pedir faz toda a diferença. A mesa digitalizadora salvou o meu projeto.”</blockquote>
+                <div class="depoimento__foto"></div>
+                <p class="depoimento__autor">
+                    <span class="depoimento__rosto" aria-hidden="true">JS</span>
+                    <span>
+                        <strong>Júlia S.</strong>
+                        <span>Designer, reservou a Wacom Intuos M</span>
+                    </span>
+                </p>
+            </li>
+            <li class="depoimento" data-modelo="Monitor Dell P2425H">
+                <p class="depoimento__topo">
+                    <span aria-label="5 de 5 estrelas">★★★★★</span>
+                    <span>04 / 04</span>
+                </p>
+                <blockquote>“O prazo fica na ficha e em Meus empréstimos, então eu sempre sei quando devolver.”</blockquote>
+                <div class="depoimento__foto"></div>
+                <p class="depoimento__autor">
+                    <span class="depoimento__rosto" aria-hidden="true">PA</span>
+                    <span>
+                        <strong>Pedro A.</strong>
+                        <span>Desenvolvedor, reservou o Monitor Dell P2425H</span>
+                    </span>
+                </p>
+            </li>
+        </ol>
+    </section>
+
+    <!-- PERGUNTAS (refs. 6 e 7), alinhadas: título com a primeira pergunta, ajuda com a última -->
+    <section class="secao container perguntas" id="perguntas" aria-labelledby="titulo-perguntas">
+        <div class="perguntas__lado">
+            <div class="perguntas__titulo">
+                <p class="selo-secao">Perguntas comuns</p>
+                <h2 class="titulo-secao" id="titulo-perguntas">Perguntas frequentes</h2>
+            </div>
+
+            <div class="cartao perguntas__ajuda">
+                <span class="estado__icone" id="icone-ajuda"></span>
+                <h3>Não achou sua resposta?</h3>
+                <p>A equipe de TI ajuda pelo ramal 2040, de segunda a sexta.</p>
+                <a class="botao botao--primario" href="#contato">Falar com a TI</a>
+            </div>
+        </div>
+
+        <div class="perguntas__lista">
+            <details class="pergunta" name="perguntas">
+                <summary>Como faço para reservar um equipamento?</summary>
+                <p>Escolha o tipo no catálogo, abra o modelo, entre com o e-mail e a senha da empresa e confirme a reserva. Você retira no mesmo dia.</p>
+            </details>
+            <details class="pergunta" name="perguntas">
+                <summary>Quanto tempo posso ficar com ele?</summary>
+                <p>14 dias a partir do dia da retirada. A data certa de devolução aparece na confirmação e em Meus empréstimos.</p>
+            </details>
+            <details class="pergunta" name="perguntas">
+                <summary>Posso reservar mais de um ao mesmo tempo?</summary>
+                <p>Não. É um equipamento por vez, para que todo mundo tenha acesso. Devolva o que está com você para reservar outro.</p>
+            </details>
+            <details class="pergunta" name="perguntas">
+                <summary>E se eu passar do prazo?</summary>
+                <p>O empréstimo aparece como atrasado e você só consegue reservar outro equipamento depois de devolver.</p>
+            </details>
+            <details class="pergunta" name="perguntas">
+                <summary>Como eu consigo acesso?</summary>
+                <p>A equipe de TI cria o seu cadastro com o e-mail da empresa e uma senha inicial. Depois é só entrar.</p>
+            </details>
+            <details class="pergunta" name="perguntas">
+                <summary>Por que o site pediu para eu entrar de novo?</summary>
+                <p>Por segurança, o acesso vale 10 minutos. Depois disso, é só entrar outra vez e continuar de onde parou.</p>
+            </details>
+        </div>
+    </section>
+
+</main>
+
+<footer id="rodape"></footer>
+
+<!-- JS: primeiro o que os outros usam; por último, o arquivo da página -->
+<script src="js/core/config.js"></script>
+<script src="js/core/utilidades.js"></script>
+<script src="js/dados/icones.js"></script>
+<script src="js/dados/produtos.js"></script>
+<script src="js/core/sessao.js"></script>
+<script src="js/componentes/avisos.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/componentes/cabecalho.js"></script>
+<script src="js/componentes/acessibilidade.js"></script>
+<script src="js/componentes/foto-produto.js"></script>
+<script src="js/paginas/inicio.js"></script>
+</body>
+</html>

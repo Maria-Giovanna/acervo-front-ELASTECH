@@ -1,0 +1,77 @@
+/* =========================================================
+   ACERVO – layout
+   Largura das páginas, espaço entre seções e o rodapé no fim da tela.
+   ========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}
+
+main {
+    flex: 1;
+}
+
+/* o "miolo" de largura fixa, centralizado */
+.container {
+    width: min(100% - 2 * var(--e3), var(--largura));
+    margin-inline: auto;
+}
+
+/* espaço entre as seções da página inicial */
+.secao {
+    padding-block: var(--e8) 0;
+}
+
+/* páginas internas (entrar, retirada, empréstimos, empresa) */
+.pagina {
+    width: min(100% - 2 * var(--e3), var(--largura));
+    margin-inline: auto;
+    padding-block: calc(5rem + var(--e5)) var(--e8);
+}
+
+.pagina--estreita {
+    width: min(100% - 2 * var(--e3), 50rem);
+}
+
+/* links para #catalogo etc.: param abaixo do cabeçalho fixo */
+[id] {
+    scroll-margin-top: 6.5rem;
+}
+
+@media (max-width: 40rem) {
+    .container,
+    .pagina,
+    .pagina--estreita {
+        width: min(100% - 2 * var(--e2), var(--largura));
+    }
+
+    .secao {
+        padding-block: var(--e6) 0;
+    }
+}
+
+/* o topo das páginas internas: selo + título + texto (o mesmo padrão das seções) */
+.topo-pagina {
+    display: grid;
+    gap: var(--e2);
+    margin-bottom: var(--e5);
+
+    & p:last-child {
+        max-width: 40rem;
+        color: var(--texto-suave);
+        font-size: 1.125rem;
+    }
+}
+
+/* um bloco dentro de uma página interna (título + conteúdo) */
+.bloco {
+    display: grid;
+    gap: var(--e3);
+    margin-bottom: var(--e5);
+}

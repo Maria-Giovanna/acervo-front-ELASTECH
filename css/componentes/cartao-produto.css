@@ -1,0 +1,157 @@
+/* =========================================================
+   ACERVO – cartão de produto (referência 3)
+   Cartão branco com a foto e a aba recortada no canto.
+   Usado no catálogo (tipos e modelos) e na confirmação da reserva.
+   ========================================================= */
+
+.grade-cartoes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--e3);
+
+    & .esqueleto {
+        aspect-ratio: 4 / 4.6;
+    }
+}
+
+.cartao-produto {
+    display: grid;
+    gap: var(--e1);
+    padding: var(--e2) var(--e2) var(--e3);
+    border-radius: var(--raio-2);
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+    color: var(--texto);
+    text-decoration: none;
+    transition: translate 0.25s, box-shadow 0.25s;
+
+    &:is(a, button):hover {
+        translate: 0 -4px;
+        color: var(--texto);
+    }
+
+    &[aria-disabled="true"] {
+        cursor: default;
+    }
+}
+
+.cartao-produto__foto {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    margin-bottom: var(--e1);
+    padding: 12%;
+    border-radius: var(--raio-1);
+    background: var(--fundo-foto);
+
+    /* a foto fica presa dentro da caixa: uma foto alta ou grande nunca estica o cartão */
+    & img {
+        position: absolute;
+        inset: 10%;
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        mix-blend-mode: multiply;   /* foto de fundo branco se funde com o cinza */
+        transition: scale 0.35s;
+    }
+
+    & > svg {
+        width: 34%;
+        color: var(--texto-suave);
+        opacity: 0.6;
+    }
+}
+
+:root[data-tema="escuro"] .cartao-produto__foto img {
+    mix-blend-mode: normal;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-tema="claro"]) .cartao-produto__foto img {
+        mix-blend-mode: normal;
+    }
+}
+
+/* o cartão de tipo é um botão (troca a vista do catálogo) */
+button.cartao-produto {
+    width: 100%;
+    border: 0;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+:is(a, button).cartao-produto:hover .cartao-produto__foto img {
+    scale: 1.05;
+}
+
+/* a aba: um pedaço do cartão que "morde" o canto da foto,
+   com as duas curvinhas invertidas feitas por degradê radial */
+.cartao-produto__aba {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 0 0.45rem 0.9rem;
+    border-bottom-left-radius: var(--raio-1);
+    background: var(--superficie);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.6;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: var(--raio-1);
+        height: var(--raio-1);
+        background: radial-gradient(circle at 0 100%, transparent calc(var(--raio-1) - 0.5px), var(--superficie) var(--raio-1));
+    }
+
+    &::before {
+        top: 0;
+        left: calc(-1 * var(--raio-1));
+    }
+
+    &::after {
+        right: 0;
+        bottom: calc(-1 * var(--raio-1));
+    }
+}
+
+.cartao-produto__info {
+    color: var(--principal);
+    font-weight: 700;
+}
+
+.cartao-produto[aria-disabled="true"] .cartao-produto__info {
+    color: var(--texto-suave);
+}
+
+.cartao-produto[aria-disabled="true"] .cartao-produto__foto img,
+.cartao-produto[aria-disabled="true"] .cartao-produto__foto > svg {
+    opacity: 0.45;
+}
+
+@media (max-width: 64rem) {
+    .grade-cartoes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 48rem) {
+    .grade-cartoes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--e2);
+    }
+
+    .cartao-produto {
+        padding: var(--e1) var(--e1) var(--e2);
+    }
+
+    .cartao-produto .titulo-cartao {
+        font-size: 1rem;
+    }
+}
+
+

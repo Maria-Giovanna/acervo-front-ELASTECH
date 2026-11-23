@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meus empréstimos – Acervo</title>
+    <meta name="description" content="Os equipamentos que estão com você e o seu histórico.">
+
+    <!-- aplica tema, tamanho do texto e cores ANTES de desenhar a página -->
+    <script src="js/core/preferencias.js"></script>
+
+    <!-- fontes: Archivo (títulos) e Atkinson Hyperlegible Next (texto, feita para baixa visão) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS: sistema (base) → peças (componentes) → página -->
+    <link rel="stylesheet" href="css/base/tokens.css">
+    <link rel="stylesheet" href="css/base/reset.css">
+    <link rel="stylesheet" href="css/base/tipografia.css">
+    <link rel="stylesheet" href="css/base/layout.css">
+    <link rel="stylesheet" href="css/componentes/botoes.css">
+    <link rel="stylesheet" href="css/componentes/cartao.css">
+    <link rel="stylesheet" href="css/componentes/formularios.css">
+    <link rel="stylesheet" href="css/componentes/selos.css">
+    <link rel="stylesheet" href="css/componentes/estados.css">
+    <link rel="stylesheet" href="css/componentes/avisos.css">
+    <link rel="stylesheet" href="css/componentes/cabecalho.css">
+    <link rel="stylesheet" href="css/componentes/rodape.css">
+    <link rel="stylesheet" href="css/paginas/meus-emprestimos.css">
+</head>
+<body data-pagina="meus-emprestimos">
+
+<header id="cabecalho"></header>
+
+<main id="conteudo" class="pagina pagina--estreita">
+    <div class="topo-pagina">
+        <p class="selo-secao">Sua conta</p>
+        <h1 class="titulo-secao">Meus empréstimos</h1>
+        <p id="resumo-emprestimos" aria-live="polite">Carregando…</p>
+    </div>
+
+    <section class="bloco" aria-labelledby="titulo-com-voce">
+        <h2 id="titulo-com-voce">Com você agora</h2>
+        <ul class="lista-emprestimos" id="lista-abertos"></ul>
+    </section>
+
+    <section class="bloco" aria-labelledby="titulo-historico">
+        <h2 id="titulo-historico">Histórico</h2>
+        <ul class="lista-emprestimos" id="lista-historico"></ul>
+    </section>
+</main>
+
+<footer id="rodape"></footer>
+
+<template id="modelo-emprestimo">
+    <li class="emprestimo">
+        <div class="emprestimo__foto"></div>
+        <div class="emprestimo__info">
+            <h3 class="emprestimo__nome"></h3>
+            <p class="emprestimo__datas"></p>
+            <p class="selo"></p>
+        </div>
+        <button class="botao botao--secundario botao--pequeno emprestimo__devolver" type="button">Devolver</button>
+    </li>
+</template>
+
+<!-- JS: primeiro o que os outros usam; por último, o arquivo da página -->
+<script src="js/core/config.js"></script>
+<script src="js/core/utilidades.js"></script>
+<script src="js/dados/icones.js"></script>
+<script src="js/dados/produtos.js"></script>
+<script src="js/core/sessao.js"></script>
+<script src="js/componentes/avisos.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/componentes/cabecalho.js"></script>
+<script src="js/componentes/acessibilidade.js"></script>
+<script src="js/componentes/foto-produto.js"></script>
+<script src="js/paginas/meus-emprestimos.js"></script>
+</body>
+</html>

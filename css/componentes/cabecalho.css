@@ -1,0 +1,249 @@
+/* =========================================================
+   ACERVO – cabeçalho
+   Dois estados (referências 1 e 2):
+   - "flutuante": no topo da página inicial, três caixas brancas
+     soltas em cima da foto (marca, navegação, ações);
+   - "fixo": depois de rolar (e nas outras páginas), uma barra
+     branca de ponta a ponta, com tudo alinhado numa linha só.
+   O JavaScript só troca o data-estado; o CSS faz a transição.
+   ========================================================= */
+
+.pular {
+    position: fixed;
+    top: var(--e1);
+    left: var(--e1);
+    z-index: 40;
+    padding: var(--e1) var(--e2);
+    border-radius: var(--pilula);
+    background: var(--principal);
+    color: var(--sobre-principal);
+    font-weight: 600;
+    translate: 0 -300%;
+
+    &:focus {
+        translate: 0 0;
+    }
+}
+
+.cabecalho {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 20;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.cabecalho__barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e2);
+    width: min(100% - 2 * var(--e3), var(--largura));
+    margin-inline: auto;
+    transition: padding 0.3s;
+}
+
+/* as três caixas */
+.cabecalho__caixa {
+    display: flex;
+    align-items: center;
+    gap: var(--e1);
+    min-height: 3.5rem;
+    border-radius: var(--raio-1);
+    transition: background-color 0.3s, padding 0.3s, box-shadow 0.3s;
+}
+
+.cabecalho__marca {
+    gap: 0.6rem;
+    color: var(--texto);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+
+    & svg {
+        width: 1.75rem;
+        height: 1.75rem;
+        color: var(--texto);
+    }
+}
+
+.cabecalho__nav {
+    gap: var(--e4);
+
+    & a {
+        color: var(--texto);
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+
+        &:hover {
+            color: var(--principal);
+        }
+
+        &[aria-current="page"] {
+            color: var(--principal);
+            font-weight: 600;
+        }
+    }
+}
+
+.cabecalho__usuario {
+    display: grid;
+    padding-inline: var(--e1);
+    line-height: 1.2;
+    text-align: right;
+
+    & strong {
+        font-size: 0.9375rem;
+    }
+
+    & span {
+        color: var(--texto-suave);
+        font-size: 0.8125rem;
+    }
+}
+
+.cabecalho__menu {
+    display: none;
+}
+
+/* //ESTADO FLUTUANTE: caixas brancas soltas em cima da foto */
+.cabecalho[data-estado="flutuante"] {
+    background: transparent;
+
+    & .cabecalho__barra {
+        padding-top: var(--e3);
+    }
+
+    & .cabecalho__caixa {
+        padding: var(--e1) var(--e2);
+        background: var(--superficie);
+        box-shadow: var(--sombra);
+    }
+
+    & .cabecalho__nav {
+        padding-inline: var(--e4);
+    }
+}
+
+/* //ESTADO FIXO: uma barra só, de ponta a ponta */
+.cabecalho[data-estado="fixo"] {
+    background: color-mix(in srgb, var(--superficie) 94%, transparent);
+    box-shadow: 0 1px 0 var(--linha);
+    backdrop-filter: blur(12px);
+
+    & .cabecalho__barra {
+        padding-block: var(--e1);
+    }
+
+    & .cabecalho__caixa {
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    & .cabecalho__nav {
+        margin-left: auto;
+        margin-right: var(--e3);
+    }
+}
+
+/* //CELULAR: a navegação vira um menu (popover) */
+@media (max-width: 56rem) {
+    .cabecalho__nav,
+    .cabecalho__usuario {
+        display: none;
+    }
+
+    .cabecalho__menu {
+        display: inline-grid;
+    }
+
+    .cabecalho__barra {
+        width: min(100% - 2 * var(--e2), var(--largura));
+    }
+
+    .cabecalho[data-estado="flutuante"] .cabecalho__barra {
+        padding-top: var(--e2);
+    }
+}
+
+/* //OS PAINÉIS QUE ABREM DO CABEÇALHO (acessibilidade e menu do celular)
+   popover do HTML: abre e fecha sem JavaScript */
+.painel {
+    inset: 5.5rem var(--margem) auto auto;
+    width: min(25rem, calc(100% - 2 * var(--e2)));
+    max-height: calc(100dvh - 7rem);
+    overflow-y: auto;
+    margin: 0;
+    padding: var(--e3);
+    border: 0;
+    border-radius: var(--raio-2);
+    background: var(--superficie);
+    color: var(--texto);
+    box-shadow: var(--sombra);
+
+    opacity: 0;
+    translate: 0 -0.5rem;
+    transition: opacity 0.2s, translate 0.2s, overlay 0.2s allow-discrete, display 0.2s allow-discrete;
+
+    &:popover-open {
+        opacity: 1;
+        translate: 0 0;
+
+        @starting-style {
+            opacity: 0;
+            translate: 0 -0.5rem;
+        }
+    }
+}
+
+.painel__topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--e2);
+
+    & h2 {
+        font-size: 1.25rem;
+    }
+}
+
+.painel fieldset {
+    display: grid;
+    gap: var(--e1);
+    padding-block: var(--e2);
+    border-top: 1px solid var(--linha);
+
+    & legend {
+        float: left;
+        width: 100%;
+        margin-bottom: var(--e1);
+        font-weight: 600;
+    }
+
+    & .campo__dica {
+        clear: both;
+        color: var(--texto-suave);
+        font-size: 0.875rem;
+    }
+}
+
+.painel__links {
+    display: grid;
+
+    & a {
+        padding-block: var(--e2);
+        border-top: 1px solid var(--linha);
+        color: var(--texto);
+        font-size: 1.125rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+}
+
+@media (max-width: 56rem) {
+    .painel {
+        inset: 5rem var(--e2) auto auto;
+    }
+}

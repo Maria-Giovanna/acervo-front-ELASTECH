@@ -1,0 +1,54 @@
+/* =========================================================
+   ACERVO – reset
+   Zera as diferenças entre navegadores.
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body, h1, h2, h3, p, ul, ol, dl, dd, figure, fieldset, blockquote {
+    margin: 0;
+}
+
+ul,
+ol {
+    padding: 0;
+    list-style: none;
+}
+
+fieldset {
+    padding: 0;
+    border: 0;
+    min-inline-size: 0;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+/* o atributo hidden esconde mesmo quando a classe usa display: flex ou grid */
+[hidden] {
+    display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

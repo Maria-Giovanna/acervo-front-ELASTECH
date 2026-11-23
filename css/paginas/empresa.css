@@ -1,0 +1,62 @@
+/* =========================================================
+   ACERVO – área da empresa (empresa.html)
+   Dois cartões de cadastro lado a lado e a tabela das unidades.
+   ========================================================= */
+
+.paineis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: var(--e3);
+    margin-bottom: var(--e5);
+
+    & .cartao {
+        align-content: start;
+    }
+}
+
+.tabela-topo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--e1);
+    margin-bottom: var(--e2);
+
+    & p {
+        color: var(--texto-suave);
+    }
+}
+
+.tabela-rolagem {
+    overflow-x: auto;
+    border-radius: var(--raio-2);
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+
+    & th,
+    & td {
+        padding: var(--e2) var(--e3);
+        border-bottom: 1px solid var(--linha);
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    & th {
+        color: var(--texto-suave);
+        font-weight: 600;
+    }
+
+    & tbody tr:last-child td {
+        border-bottom: 0;
+    }
+
+    & td:first-child {
+        font-weight: 600;
+    }
+}

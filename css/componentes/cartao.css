@@ -1,0 +1,56 @@
+/* =========================================================
+   ACERVO – cartão e título de seção
+   O cartão é sempre branco, com --raio-2 e sombra suave.
+   Toda seção começa igual: selo em pílula + título + texto.
+   ========================================================= */
+
+.cartao {
+    padding: var(--e4);
+    border-radius: var(--raio-2);
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+}
+
+/* o selo da seção ("Catálogo", "Avaliações", "Perguntas comuns") */
+.selo-secao {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--e1);
+    justify-self: start;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--linha);
+    border-radius: var(--pilula);
+    background: var(--superficie);
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* versão em cima de foto (o hero) */
+.sobre-imagem .selo-secao {
+    border-color: rgb(255 255 255 / 0.25);
+    background: rgb(255 255 255 / 0.1);
+    color: #FFFFFF;
+    backdrop-filter: blur(6px);
+}
+
+/* cabeça de seção: selo + título + texto, e um link opcional à direita */
+.cabeca-secao {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--e3);
+    margin-bottom: var(--e5);
+}
+
+.cabeca-secao__texto {
+    display: grid;
+    gap: var(--e2);
+    max-width: 40rem;
+
+    & p {
+        color: var(--texto-suave);
+        font-size: 1.125rem;
+    }
+}

@@ -1,0 +1,155 @@
+/* =========================================================
+   ACERVO – botões
+   UM botão para o site inteiro, em pílula, com 2 variantes:
+     .botao--primario   (verde-oliva, a ação principal da tela)
+     .botao--secundario (contorno, a ação de apoio)
+   e 2 tamanhos: normal (48px) e .botao--pequeno (40px).
+   Em cima de foto escura (o hero), .sobre-imagem inverte as cores.
+   Botão redondo de ícone: .botao-icone (44px).
+   ========================================================= */
+
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--e1);
+    height: 3rem;
+    padding-inline: 1.75rem;
+    border: 1.5px solid transparent;
+    border-radius: var(--pilula);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, scale 0.12s;
+
+    &:active:not(:disabled) {
+        scale: 0.97;
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &[aria-busy="true"] {
+        cursor: progress;
+        opacity: 0.75;
+    }
+
+    & svg {
+        width: 1.15rem;
+        height: 1.15rem;
+        flex-shrink: 0;
+    }
+}
+
+.botao--pequeno {
+    height: 2.5rem;
+    padding-inline: 1.25rem;
+    font-size: 0.9375rem;
+}
+
+.botao--largo {
+    width: 100%;
+}
+
+.botao--primario {
+    background: var(--principal);
+    color: var(--sobre-principal);
+
+    &:hover:not(:disabled) {
+        background: var(--principal-forte);
+        color: var(--sobre-principal);
+    }
+}
+
+.botao--secundario {
+    background: transparent;
+    border-color: var(--linha);
+    color: var(--texto);
+
+    &:hover:not(:disabled) {
+        border-color: var(--texto);
+        color: var(--texto);
+    }
+}
+
+/* em cima de foto escura: o primário fica branco e o secundário fica translúcido */
+.sobre-imagem .botao--primario {
+    background: #FFFFFF;
+    color: #1C1E19;
+
+    &:hover {
+        background: #ECEEE6;
+        color: #1C1E19;
+    }
+}
+
+.sobre-imagem .botao--secundario {
+    background: rgb(255 255 255 / 0.08);
+    border-color: rgb(255 255 255 / 0.45);
+    color: #FFFFFF;
+    backdrop-filter: blur(6px);
+
+    &:hover {
+        background: rgb(255 255 255 / 0.16);
+        border-color: #FFFFFF;
+        color: #FFFFFF;
+    }
+}
+
+/* botão redondo de ícone (acessibilidade, menu, fechar) */
+.botao-icone {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--superficie-baixa);
+    color: var(--texto);
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background: var(--linha);
+    }
+
+    & svg {
+        width: 1.35rem;
+        height: 1.35rem;
+    }
+}
+
+/* link de texto com seta (o "Ver todos →" da referência) */
+.link-seta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--texto);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    & svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        transition: translate 0.2s;
+    }
+
+    &:hover {
+        color: var(--principal);
+    }
+
+    &:hover svg {
+        translate: 0.2rem 0;
+    }
+}
